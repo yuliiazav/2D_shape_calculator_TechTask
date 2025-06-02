@@ -1,0 +1,40 @@
+.calculator-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 80vh;
+}
+
+.calculator-container__heading {
+  color: var(--gray-color);
+  font-size: 1rem;
+  text-align: center;
+}
+.accentText {
+  color: var(--accent-color);
+  font: 1.25rem;
+}
+
+.input-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Приклад використання вкладеності або інших CSS-фіч */
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
