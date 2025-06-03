@@ -1,7 +1,5 @@
-import React from "react";
 import Calculator from "./components/calculator/Calculator.jsx";
 import Header from "./components/header/Header.jsx";
-// import Sidebar from "./components/sidebar/Sidebar.jsx";
 import styles from "./App.module.css";
 
 function App() {
@@ -10,7 +8,6 @@ function App() {
       <div className={styles["main-container"]}>
         <Header />
         <Calculator />
-        {/* <Sidebar /> */}
       </div>
     </div>
   );

@@ -26,6 +26,7 @@
 }
 
 .select,
+textarea,
 .input-fields input[type="number"] {
   width: 100%;
   padding: 0.5rem;
@@ -38,7 +39,28 @@
     box-shadow 0.2s ease-in-out;
 }
 
+.textarea__box {
+  flex-basis: 55%;
+}
+.textareaTips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #29712c;
+}
+.textareaTips span {
+  display: block;
+  font-size: 0.7rem;
+}
+@media (min-width: 480px) {
+  .textarea {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+}
 .select:focus,
+textarea:focus,
 .input-fields input[type="number"]:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
@@ -55,10 +77,18 @@
   background-color: #eaf6ff;
   justify-items: center;
 }
+form .inputTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  letter-spacing: 0.1rem;
+  font-family: serif;
+  text-transform: capitalize;
+  color: var(--text-color);
+}
 
 .button {
   display: block;
-  width: 25%;
   align-self: flex-end;
   padding: 8px 25px;
   margin-top: 5px;
