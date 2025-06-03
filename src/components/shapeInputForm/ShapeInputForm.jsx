@@ -1,6 +1,12 @@
 import styles from "./ShapeInputForm.module.css";
 import { useState } from "react";
 import { getShapeCalculations } from "../../helpers/shapeCalculations";
+import SquareInput from "../inputs/SquareInput";
+import RectangleInput from "../inputs/RectangleInput";
+import CircleInput from "../inputs/CircleInput";
+import TriangleInput from "../inputs/TriangleInput";
+import RhombusInput from "../inputs/RhombusInput";
+import ShapeTextAreaInput from "../inputs/ShapeTextAreaInput";
 
 const ShapeInputForm = ({ onAddShape, onClearResults }) => {
   const [selectedShape, setSelectedShape] = useState("");
@@ -99,10 +105,11 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
         }
         break;
       case "Circle":
-        // 'Circle Radius 34' or 'Circle Radius 34 Center 1 7'
+        // 'Circle Radius 34' or 'Circle Radius 34 Center 1 7'. Radius should be >0
         if (
           textAreaParts[1] === "Radius" &&
-          isValidNumber(parseFloat(textAreaParts[2]))
+          isValidNumber(parseFloat(textAreaParts[2])) &&
+          parseFloat(textAreaParts[2] > 0)
         ) {
           data.radius = parseFloat(textAreaParts[2]);
           if (
@@ -118,7 +125,7 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
           }
         } else {
           throw new Error(
-            "Invalid Circle parameters. Check samples: 'Circle Radius 34' or 'Circle Radius 34 Center 1 7'."
+            "Invalid Circle parameters. Radius should be > 0. Check samples: 'Circle Radius 34' or 'Circle Radius 34 Center 1 7'."
           );
         }
         break;
@@ -350,308 +357,39 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
           <option value="Rhombus">Rhombus</option>
         </select>{" "}
         {selectedShape === "Square" && (
-          <div className={styles["input-fields"]}>
-            <div className={styles["form-group"]}>
-              <label htmlFor="sideLength">Side Length:</label>
-              <input
-                type="number"
-                name="sideLength"
-                id="sideLength"
-                value={inputValues.sideLength || ""}
-                onChange={handleInputChange}
-                min="0"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p1x">Point 1 X:</label>
-              <input
-                type="number"
-                name="p1x"
-                id="p1x"
-                value={inputValues.p1x || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p1y">Point 1 Y:</label>
-              <input
-                type="number"
-                name="p1y"
-                id="p1y"
-                value={inputValues.p1y || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p2x">Point 2 X:</label>
-              <input
-                type="number"
-                name="p2x"
-                id="p2x"
-                value={inputValues.p2x || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p2y">Point 2 Y:</label>
-              <input
-                type="number"
-                name="p2y"
-                id="p2y"
-                value={inputValues.p2y || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-          </div>
+          <SquareInput
+            inputValues={inputValues}
+            onInputChange={handleInputChange}
+          />
         )}
         {selectedShape === "Rectangle" && (
-          <div>
-            {" "}
-            <p className={styles["warning-msg"]}>
-              *Make sure to enter either <u>TopRight & BottomLeft </u>
-              or <u> TopLeft & BottomRight </u>
-              Point Coordinates*
-            </p>
-            <div className={styles["input-fields"]}>
-              <div className={styles["form-group"]}>
-                <label htmlFor="p1x">Point 1 X:</label>
-                <input
-                  type="number"
-                  name="p1x"
-                  id="p1x"
-                  value={inputValues.p1x || ""}
-                  onChange={handleInputChange}
-                  step="any"
-                  required
-                />
-              </div>
-              <div className={styles["form-group"]}>
-                <label htmlFor="p1y">Point 1 Y:</label>
-                <input
-                  type="number"
-                  name="p1y"
-                  id="p1y"
-                  value={inputValues.p1y || ""}
-                  onChange={handleInputChange}
-                  step="any"
-                  required
-                />
-              </div>
-              <div className={styles["form-group"]}>
-                <label htmlFor="p2x">Point 2 X:</label>
-                <input
-                  type="number"
-                  name="p2x"
-                  id="p2x"
-                  value={inputValues.p2x || ""}
-                  onChange={handleInputChange}
-                  step="any"
-                  required
-                />
-              </div>
-              <div className={styles["form-group"]}>
-                <label htmlFor="p2y">Point 2 Y:</label>
-                <input
-                  type="number"
-                  name="p2y"
-                  id="p2y"
-                  value={inputValues.p2y || ""}
-                  onChange={handleInputChange}
-                  step="any"
-                  required
-                />
-              </div>
-            </div>
-          </div>
+          <RectangleInput
+            inputValues={inputValues}
+            onInputChange={handleInputChange}
+          />
         )}
         {selectedShape === "Circle" && (
-          <div className={styles["input-fields"]}>
-            <div className={styles["form-group"]}>
-              <label htmlFor="radius">Radius:</label>
-              <input
-                type="number"
-                name="radius"
-                id="radius"
-                value={inputValues.radius || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-                min="0"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="centerX">Center X:</label>
-              <input
-                type="number"
-                name="centerX"
-                id="centerX"
-                value={inputValues.centerX || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="centerY">Center Y:</label>
-              <input
-                type="number"
-                name="centerY"
-                id="centerY"
-                value={inputValues.centerY || ""}
-                onChange={handleInputChange}
-                step="any"
-              />
-            </div>
-          </div>
+          <CircleInput
+            inputValues={inputValues}
+            onInputChange={handleInputChange}
+          />
         )}
         {selectedShape === "Triangle" && (
-          <div className={styles["input-fields"]}>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p1x">Point 1 X:</label>
-              <input
-                type="number"
-                name="p1x"
-                id="p1x"
-                value={inputValues.p1x || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p1y">Point 1 Y:</label>
-              <input
-                type="number"
-                name="p1y"
-                id="p1y"
-                value={inputValues.p1y || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p2x">Point 2 X:</label>
-              <input
-                type="number"
-                name="p2x"
-                id="p2x"
-                value={inputValues.p2x || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p2y">Point 2 Y:</label>
-              <input
-                type="number"
-                name="p2y"
-                id="p2y"
-                value={inputValues.p2y || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p3x">Point 3 X:</label>
-              <input
-                type="number"
-                name="p3x"
-                id="p3x"
-                value={inputValues.p3x || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="p3y">Point 3 Y:</label>
-              <input
-                type="number"
-                name="p3y"
-                id="p3y"
-                value={inputValues.p3y || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-          </div>
+          <TriangleInput
+            inputValues={inputValues}
+            onInputChange={handleInputChange}
+          />
         )}
         {selectedShape === "Rhombus" && (
-          <div className={styles["input-fields"]}>
-            <div className={styles["form-group"]}>
-              <label htmlFor="sideLength">Side Length:</label>
-              <input
-                type="number"
-                name="sideLength"
-                id="sideLength"
-                value={inputValues.sideLength || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-                min="0"
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="diagonal1">Diagonal 1:</label>
-              <input
-                type="number"
-                name="diagonal1"
-                id="diagonal1"
-                value={inputValues.diagonal1 || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-            <div className={styles["form-group"]}>
-              <label htmlFor="diagonal2">Diagonal 2:</label>
-              <input
-                type="number"
-                name="diagonal2"
-                id="diagonal2"
-                value={inputValues.diagonal2 || ""}
-                onChange={handleInputChange}
-                step="any"
-                required
-              />
-            </div>
-          </div>
+          <RhombusInput
+            inputValues={inputValues}
+            onInputChange={handleInputChange}
+          />
         )}
-        <div className={styles["form-group"]}>
-          <label htmlFor="textareaInput" className={styles.inputTitle}>
-            Or enter shape data directly in required formats as samples show:
-          </label>
-          <div className={styles.textarea}>
-            <div className={styles.textarea__box}>
-              <textarea
-                id="textareaInput"
-                className={styles.textarea}
-                value={textareaInput}
-                onChange={handleTextareaChange}
-                placeholder="e.g., Square SideLength 5 Point1 5 2 Point2 15 5"
-                rows="2"
-              ></textarea>
-            </div>
-            <div className={styles.textareaTips}>
-              <span>
-                ' Square SideLength 5 ' or ' Square Point1 5 2 Point2 15 5 '
-              </span>
-              <span>' Rectangle Point1 9 2 Point2 8 75 '</span>
-              <span>
-                ' Circle Radius 34 ' or ' Circle Radius 34 Center 1 7 '
-              </span>
-              <span>' Triangle Point1 9 2 Point2 8 75 Point3 9 6 '</span>
-              <span>' Rhombus SideLength 5 Diagonal1 33 Diagonal2 45 '</span>
-            </div>
-          </div>
-        </div>
+        <ShapeTextAreaInput
+          textareaInput={textareaInput}
+          onTextareaChange={handleTextareaChange}
+        />
         <button
           type="submit"
           className={styles.button}
