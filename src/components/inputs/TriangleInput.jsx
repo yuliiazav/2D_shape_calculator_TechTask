@@ -9,7 +9,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p1x"
           id="p1x"
-          value={inputValues.p1x || ""}
+          value={inputValues.p1x ?? ""}
           onChange={onInputChange}
           step="any"
           required
@@ -21,7 +21,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p1y"
           id="p1y"
-          value={inputValues.p1y || ""}
+          value={inputValues.p1y ?? ""}
           onChange={onInputChange}
           step="any"
           required
@@ -33,7 +33,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p2x"
           id="p2x"
-          value={inputValues.p2x || ""}
+          value={inputValues.p2x ?? ""}
           onChange={onInputChange}
           step="any"
           required
@@ -45,7 +45,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p2y"
           id="p2y"
-          value={inputValues.p2y || ""}
+          value={inputValues.p2y ?? ""}
           onChange={onInputChange}
           step="any"
           required
@@ -57,7 +57,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p3x"
           id="p3x"
-          value={inputValues.p3x || ""}
+          value={inputValues.p3x ?? ""}
           onChange={onInputChange}
           step="any"
           required
@@ -69,7 +69,7 @@ const TriangleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="p3y"
           id="p3y"
-          value={inputValues.p3y || ""}
+          value={inputValues.p3y ?? ""}
           onChange={onInputChange}
           step="any"
           required

@@ -22,7 +22,7 @@ const CircleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="centerX"
           id="centerX"
-          value={inputValues.centerX || ""}
+          value={inputValues.centerX ?? ""}
           onChange={onInputChange}
           step="any"
         />
@@ -33,7 +33,7 @@ const CircleInput = ({ inputValues, onInputChange }) => {
           type="number"
           name="centerY"
           id="centerY"
-          value={inputValues.centerY || ""}
+          value={inputValues.centerY ?? ""}
           onChange={onInputChange}
           step="any"
         />
