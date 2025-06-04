@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "../shapeInputForm/ShapeInputForm.module.css";
 
-const ShapeTextAreaInput = ({ textareaInput, onTextareaChange }) => {
+const ShapeTextAreaInput = ({ textareaInput, onTextareaChange, onSubmit }) => {
+  const handleKeyDownEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSubmit(e);
+    }
+  };
+
   return (
     <div className={styles["form-group"]}>
       <label htmlFor="textareaInput" className={styles.inputTitle}>
@@ -16,6 +23,7 @@ const ShapeTextAreaInput = ({ textareaInput, onTextareaChange }) => {
             onChange={onTextareaChange}
             placeholder="e.g., Square SideLength 5 Point1 5 2 Point2 15 5"
             rows="2"
+            onKeyDown={handleKeyDownEnter}
           ></textarea>
         </div>
         <div className={styles.textareaTips}>

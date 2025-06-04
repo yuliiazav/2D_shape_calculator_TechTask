@@ -50,7 +50,7 @@ textarea,
 }
 .textareaTips span {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 @media (min-width: 480px) {
   .textarea {

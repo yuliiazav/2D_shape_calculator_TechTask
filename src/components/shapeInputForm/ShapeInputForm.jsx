@@ -106,12 +106,14 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
         break;
       case "Circle":
         // 'Circle Radius 34' or 'Circle Radius 34 Center 1 7'. Radius should be >0
+
         if (
           textAreaParts[1] === "Radius" &&
           isValidNumber(parseFloat(textAreaParts[2])) &&
-          parseFloat(textAreaParts[2] > 0)
+          parseFloat(textAreaParts[2]) > 0
         ) {
           data.radius = parseFloat(textAreaParts[2]);
+          console.log(data.radius);
           if (
             textAreaParts[3] === "Center" &&
             isValidNumber(parseFloat(textAreaParts[4])) &&
@@ -186,6 +188,10 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
   };
 
   const handleSubmit = (e) => {
+    if (e && typeof e.preventDefault === "function") {
+      e.preventDefault();
+    }
+
     e.preventDefault();
 
     let shapeData = null;
@@ -389,6 +395,7 @@ const ShapeInputForm = ({ onAddShape, onClearResults }) => {
         <ShapeTextAreaInput
           textareaInput={textareaInput}
           onTextareaChange={handleTextareaChange}
+          onSubmit={handleSubmit}
         />
         <button
           type="submit"
